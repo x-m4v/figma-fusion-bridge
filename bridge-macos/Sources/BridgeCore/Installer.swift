@@ -26,7 +26,7 @@ public struct Installer {
                 .appendingPathComponent("../resolve/\(sourceName)"),
             URL(fileURLWithPath: #filePath)
                 .deletingLastPathComponent()
-                .appendingPathComponent("../../../../resolve/\(sourceName)"),
+                .appendingPathComponent("../../../resolve/\(sourceName)"),
         ].compactMap { $0?.standardizedFileURL }
 
         return candidates.first { FileManager.default.fileExists(atPath: $0.path) }

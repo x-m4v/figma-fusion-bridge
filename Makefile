@@ -26,7 +26,7 @@ build-app: ## Build the macOS bridge as a .app
 test: test-python test-swift ## Run every test suite
 
 test-python: ## Fusion builder tests (no Resolve needed)
-	python3 -m pytest resolve/tests -q
+	python3 -m pytest resolve/tests bridge-python/tests -q
 
 test-swift: ## Bridge tests (no Xcode needed)
 	cd bridge-macos && swift run BridgeTests 2>/dev/null
