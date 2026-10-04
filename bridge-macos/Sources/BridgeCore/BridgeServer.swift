@@ -115,7 +115,8 @@ public actor BridgeServer {
                 }
             }
             listener.newConnectionHandler = { [weak self] connection in
-                Task { await self?.accept(connection) }
+                guard let server = self else { return }
+                Task { await server.accept(connection) }
             }
             listener.start(queue: queue)
         }
@@ -137,7 +138,8 @@ public actor BridgeServer {
         connection.stateUpdateHandler = { [weak self] state in
             switch state {
             case .cancelled, .failed:
-                Task { await self?.drop(connection) }
+                guard let server = self else { return }
+                Task { await server.drop(connection) }
             default:
                 break
             }

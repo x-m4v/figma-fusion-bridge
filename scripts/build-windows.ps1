@@ -3,8 +3,8 @@ $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
 & python -m PyInstaller --noconfirm --clean --onedir --console --name FigmaFusionBridge `
   --distpath dist/windows --workpath dist/pyinstaller-build --specpath dist `
-  --paths resolve --paths bridge-python --collect-submodules ffbridge `
-  --add-data "resolve;payload" bridge-python/app.py
+  --paths "$Root\resolve" --paths "$Root\bridge-python" --collect-submodules ffbridge `
+  --add-data "$Root\resolve;payload" "$Root\bridge-python\app.py"
 if ($LASTEXITCODE -ne 0) { throw 'Windows application build failed.' }
 & dist/windows/FigmaFusionBridge/FigmaFusionBridge.exe --self-test
 if ($LASTEXITCODE -ne 0) { throw 'Packaged application self-test failed.' }

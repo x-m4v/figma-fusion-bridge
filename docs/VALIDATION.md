@@ -10,6 +10,7 @@ Host: Apple Silicon macOS. Node 24.13.0, Python 3.9.6, Swift 6.4.
 - Python/Lua suite: **279 passed, 1 skipped**. The skipped check enumerates actual Windows GDI fonts.
 - Swift checks: **49 passed**, including installation, repair and uninstall in isolated directories.
 - macOS release .app build: passed; arm64 architecture and ad-hoc signature verified.
+- Actual native .app startup and HTTP-to-CLI smoke test: passed with isolated data, including image roundtrip and generated graph.
 - Real loopback HTTP: discovery, pairing, authorization, CORS, rejected invalid host,
   checksum verification, upload/download, transfer, report and long poll passed.
 - Actual CLI retrieved the starter document through HTTP and produced a Fusion `.setting` file.
