@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "transferId": "starter-rectangle",
+  "createdAt": "2026-09-08T00:00:00Z",
+  "source": {
+    "app": "figma",
+    "producerVersion": "0.1.0",
+    "documentId": "doc-1",
+    "documentName": "Example \u2014 Pricing Card"
+  },
+  "canvas": {
+    "frame": {
+      "x": 660,
+      "y": 340,
+      "width": 600,
+      "height": 400
+    },
+    "rootFrameId": null
+  },
+  "selection": [
+    "rectangle"
+  ],
+  "nodes": [
+    {
+      "id": "rectangle",
+      "parentId": null,
+      "childIndex": 0,
+      "kind": "RECTANGLE",
+      "name": "Starter rectangle",
+      "visible": true,
+      "locked": false,
+      "opacity": 1.0,
+      "blendMode": "PASS_THROUGH",
+      "bounds": {
+        "x": 660,
+        "y": 340,
+        "width": 600,
+        "height": 400
+      },
+      "absoluteTransform": [
+        [
+          1,
+          0,
+          660
+        ],
+        [
+          0,
+          1,
+          340
+        ]
+      ],
+      "relativeTransform": [
+        [
+          1,
+          0,
+          660
+        ],
+        [
+          0,
+          1,
+          340
+        ]
+      ],
+      "rotation": 0.0,
+      "clipsContent": false,
+      "isMask": false,
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1.0,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 1.0
+          }
+        }
+      ],
+      "effects": [],
+      "extra": {
+        "cornerRadius": 24
+      },
+      "geometry": {
+        "cornerRadii": [
+          24,
+          24,
+          24,
+          24
+        ],
+        "cornerSmoothing": 0
+      }
+    }
+  ],
+  "assets": [],
+  "fonts": [],
+  "options": {},
+  "diagnostics": []
+}

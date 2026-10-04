@@ -1,0 +1,1 @@
+"""Windows local bridge application."""

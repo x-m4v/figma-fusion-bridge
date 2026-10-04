@@ -1,0 +1,23 @@
+{
+  "name": "Figma Fusion Bridge",
+  "id": "figma-fusion-bridge",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "networkAccess": {
+    "allowedDomains": [
+      "http://localhost:8787",
+      "http://localhost:8788",
+      "http://localhost:8789",
+      "http://localhost:8790",
+      "http://localhost:8791"
+    ],
+    "reasoning": "Sends the selected design to the Figma Fusion Bridge helper running on this computer, over the loopback interface. Nothing is sent to any remote server."
+  }
+}
