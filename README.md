@@ -15,7 +15,7 @@ code, and an authentication token; it does not use a remote transfer service.
 | Platform | Status | Requirements |
 |---|---|---|
 | macOS | App builds; automated checks pass. Full Figma → Resolve acceptance remains pending. | macOS 14+, Apple Silicon, Python 3.9+ |
-| Windows | Windows app, installer and native CI build are provided. See Actions/VALIDATION for actual run results. | Windows 10/11, x64; release bundles Python |
+| Windows | Native Windows x64 build, installer, HTTP/GUI and LuaJIT launch checks pass. Full Resolve acceptance remains pending. | Windows 10/11, x64; release bundles Python |
 
 Use **Figma desktop** to import the development plugin. A browser alone is not
 the supported installation route. Resolve must support the Lua menu commands and
@@ -24,8 +24,7 @@ separate acceptance testing; compatibility is not guaranteed solely by unit test
 
 ## Installation
 
-Download the archive for your OS from this repository's **Releases**, when a
-release has been created. GitHub's **Code → Download ZIP** downloads source code
+Download the archive for your OS from [the preview release](https://github.com/x-m4v/figma-fusion-bridge/releases/tag/v0.1.0-preview.1). GitHub's **Code → Download ZIP** downloads source code
 and does not include built apps. Development builds are also available under
 **Actions → Check and build → Artifacts** after a successful run.
 

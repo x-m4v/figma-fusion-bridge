@@ -24,10 +24,19 @@ now verify that three Lua commands and the supporting library are installed.
 
 ## Native Windows and hosted CI
 
-The workflow `.github/workflows/ci.yml` performs native Windows x64 and macOS ARM64
-builds and uploads installation ZIPs. Actual CI run links/results are recorded here
-after publication. Windows checks cover real GDI enumeration, packaged HTTP
-self-test, isolated installation, and LuaJIT → Unicode Win32 process → packaged CLI.
+Both native jobs passed in [GitHub Actions run 37199978426](https://github.com/x-m4v/figma-fusion-bridge/actions/runs/37199978426), for code commit `4517310`.
+
+- Windows x64: Python/Lua checks including real GDI fonts passed; EXE packaging,
+  loopback HTTP self-test and hidden GUI initialization passed.
+- Windows installation and actual LuaJIT → CreateProcessW → packaged CLI passed
+  with Unicode/spaces in both the data directory and executable directory.
+- macOS ARM64: Python/Lua and Swift checks passed; .app build, signature
+  verification and release packaging passed on the macOS 14 hosted runner.
+- Both ZIP payloads and SHA-256 checksums were checked after downloading. Plugin
+  bundles, platform installers and applicable license texts are present; tests,
+  bytecode caches, local credentials and user session files are excluded.
+
+Installable packages: [v0.1.0-preview.1](https://github.com/x-m4v/figma-fusion-bridge/releases/tag/v0.1.0-preview.1).
 
 ## Checks still requiring application access
 
