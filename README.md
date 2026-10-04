@@ -50,9 +50,8 @@ warning requires Developer ID signing and notarization.
 3. Restart Resolve. Keep the bridge window open. Enter its pairing code in Figma.
 
 The Windows executable is unsigned. Do not disable antivirus to run it. Moving
-the app after installation requires running the installer again. Spaces and
-Unicode in paths are supported; `%`, `!` and quotes in the runtime path are rejected
-by the current Lua launcher to prevent unsafe shell expansion.
+the app after installation requires running the installer again. Spaces and Unicode in paths are supported. The Windows launcher uses LuaJIT and
+Unicode process APIs instead of shell expansion.
 
 ### Figma and first import — both platforms
 

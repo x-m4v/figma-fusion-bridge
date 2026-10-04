@@ -16,7 +16,7 @@ Host: Apple Silicon macOS. Node 24.13.0, Python 3.9.6, Swift 6.4.
 - Actual CLI retrieved the starter document through HTTP and produced a Fusion `.setting` file.
 - Lua 5.1 executed real helper code; Windows JSON path decoding, command construction,
   script syntax and quoted paths passed. Local tests simulated the Windows shell;
-  the GitHub Windows job also exercises actual cmd.exe and packaged CLI.
+  the GitHub Windows job also exercises actual Windows process launch and packaged CLI.
 
 The original macOS installer omitted its Lua helper from the app bundle and looked
 for an obsolete Python menu script. Both issues are fixed. Native installer tests
@@ -27,7 +27,7 @@ now verify that three Lua commands and the supporting library are installed.
 The workflow `.github/workflows/ci.yml` performs native Windows x64 and macOS ARM64
 builds and uploads installation ZIPs. Actual CI run links/results are recorded here
 after publication. Windows checks cover real GDI enumeration, packaged HTTP
-self-test, isolated installation, and Lua → cmd.exe → packaged CLI.
+self-test, isolated installation, and LuaJIT → Unicode Win32 process → packaged CLI.
 
 ## Checks still requiring application access
 

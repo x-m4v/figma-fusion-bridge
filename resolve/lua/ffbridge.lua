@@ -23,12 +23,12 @@ if not base or base == "" then
     base = assert(os.getenv("HOME"), "HOME is missing") .. "/Library/Application Support/FigmaFusionBridge"
   end
 end
-M.LIB_DIR = base .. "/lib"
+M.LIB_DIR = M.LIB_DIR or (base .. "/lib")
 
 local function q(s)
   s = tostring(s)
   if M.IS_WINDOWS then
-    assert(not s:find('[%%!"\r\n]'), "Unsupported shell characters in path")
+    assert(not s:find('["\r\n]'), "Unsupported shell characters in path")
     return '"' .. s .. '"'
   end
   return "'" .. s:gsub("'", "'\\''") .. "'"
@@ -36,6 +36,7 @@ end
 M.quote = q
 
 function M.find_python()
+  if M.RUNTIME then return M.RUNTIME end
   local config = io.open(M.LIB_DIR .. "/python-path.txt", "r")
   if config then
     local path = config:read("*l")
@@ -86,7 +87,10 @@ function M.run_cli(args)
     command = command .. " " .. q(M.LIB_DIR .. "/ffbridge_launcher.py") .. " "
   end
   local cmd = command .. args .. " 2>&1"
-  if M.IS_WINDOWS then cmd = 'cmd /d /s /c "' .. cmd .. '"' end
+  if M.IS_WINDOWS then
+    if not M.run_windows then return nil, "Windows launcher is missing. Reinstall the scripts." end
+    return M.run_windows(command .. args)
+  end
   local pipe = io.popen(cmd, "r")
   if not pipe then
     return nil, "Could not start the bridge helper."

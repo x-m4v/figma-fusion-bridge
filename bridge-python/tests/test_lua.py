@@ -36,7 +36,7 @@ def test_shell_quoting():
     assert posix.quote("/Users/O'Brien/$demo") == "'/Users/O'\\''Brien/$demo'"
     _, windows = helper(True)
     assert windows.quote('C:/Users/Дизайнер/Bridge data/FigmaFusionBridge.exe').startswith('"C:/')
-    for character in ['%', '!', '"', '\n']:
+    for character in ['"', '\n']:
         with pytest.raises(Exception, match='Unsupported shell characters'):
             windows.quote('C:/bad' + character + 'path')
 
@@ -54,10 +54,12 @@ def test_cli_command_for_installed_runtime(windows):
                    close = function() return true end }
         end
     ''')
+    if windows:
+        module.run_windows = lua.eval('function(cmd) recorded = cmd; return \'FFBRIDGE_RESULT {"status":"ok"}\' end')
     assert 'FFBRIDGE_RESULT' in module.run_cli('test')
     command = lua.globals().recorded
     if windows:
-        assert command == 'cmd /d /s /c ""C:/Bridge data/FigmaFusionBridge.exe" --cli test 2>&1"'
+        assert command == '"C:/Bridge data/FigmaFusionBridge.exe" --cli test'
     else:
         assert 'ffbridge_launcher.py' in command and 'PYTHONPATH=' not in command
 
