@@ -14,9 +14,10 @@ python_license = python_root / 'LICENSE.txt'
 if not python_license.is_file():
     raise SystemExit('Python LICENSE.txt is required for redistribution.')
 shutil.copy2(python_license, root / 'Python-LICENSE.txt')
-runtime = tkinter.Tcl()
-versions = {'tcl': runtime.eval('info patchlevel'), 'tk': runtime.eval('package require Tk')}
-runtime.eval('destroy .')
+runtime = tkinter.Tk()
+runtime.withdraw()
+versions = {'tcl': runtime.tk.call('info', 'patchlevel'), 'tk': runtime.tk.call('package', 'provide', 'Tk')}
+runtime.destroy()
 for library, version in versions.items():
     if not re.fullmatch(r'8\.6\.[0-9]+', version):
         raise SystemExit(f'Unexpected {library} version: {version}')

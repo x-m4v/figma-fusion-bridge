@@ -1,10 +1,12 @@
 $ErrorActionPreference = 'Stop'
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
+& python scripts/stage-windows-payload.py
+if ($LASTEXITCODE -ne 0) { throw 'Payload staging failed.' }
 & python -m PyInstaller --noconfirm --clean --onedir --console --name FigmaFusionBridge `
   --distpath dist/windows --workpath dist/pyinstaller-build --specpath dist `
   --paths "$Root\resolve" --paths "$Root\bridge-python" --collect-submodules ffbridge `
-  --add-data "$Root\resolve;payload" "$Root\bridge-python\app.py"
+  --add-data "$Root\dist\windows-payload;payload" "$Root\bridge-python\app.py"
 if ($LASTEXITCODE -ne 0) { throw 'Windows application build failed.' }
 & dist/windows/FigmaFusionBridge/FigmaFusionBridge.exe --self-test
 if ($LASTEXITCODE -ne 0) { throw 'Packaged application self-test failed.' }

@@ -31,7 +31,13 @@ def main():
                 assert BridgeClient(Session(bridge.state.port, bridge.state.token)).status()['version'] == '0.1.0'
             finally:
                 bridge.stop()
-        print('Packaged bridge HTTP self-test passed.')
+        if sys.platform == 'win32':
+            import tkinter
+            window = tkinter.Tk()
+            window.withdraw()
+            window.update_idletasks()
+            window.destroy()
+        print('Packaged bridge HTTP and GUI initialization self-test passed.')
         return 0
 
     import tkinter as tk
